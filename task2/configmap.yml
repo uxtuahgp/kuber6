@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-cm
+data:
+  demo.html: |
+    <html>
+    <head>configMap demo!</head>
+    <body>
+    U popa byla
+    sobaka On ee lubil
+    Ona syela kusok myasa
+    On ee lubil
+    </body>
+    </html>

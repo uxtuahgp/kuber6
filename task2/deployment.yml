@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sec-app
+  labels:
+    app: sec-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sec-app
+  template:
+    metadata:
+      labels:
+        app: sec-app
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          volumeMounts:
+            - name: cm-vol
+              mountPath: /usr/share/nginx/html
+              readOnly: true
+          ports:
+            - containerPort: 80
+      volumes:
+        - name: cm-vol
+          configMap:
+            name: my-cm
