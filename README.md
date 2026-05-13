@@ -1,10 +1,11 @@
-## Домашнее задание по теме "Настройка приложений и управление доступом в K8s" ##  
+## Домашнее задание по теме "Настройка приложений и управление доступом в K8s"
 
-### Задание 1 - Работа с configMaps ###  
+### Задание 1 - Работа с configMaps
 
-1. Создал и применил [манифест configMap](configmap.yml) в котором сохранил содержимое HTML документа  
-2. Создал и применил [манифест Deployment](deployment.yml) контейнеры которого который через volume получают содержимое документа  
-3. Проверил доступность страницы из одного из Pod  
+1. Создал и применил [манифест configMap](configmap.yml) в котором сохранил содержимое HTML документа
+2. Создал и применил [манифест Deployment](deployment.yml) контейнеры которого который через volume получают содержимое документа
+3. Проверил доступность страницы из одного из Pod
+
 ```
 alex@uxtu-note:~/Study/kuber6/kuber6$ kubectl get pods
 NAME                      READY   STATUS    RESTARTS   AGE
@@ -30,6 +31,39 @@ Ona syela kusok myasa
 On ee lubil
 </body>
 </html>
-```  
+```
 
-4. 
+4. Для собственного развития и повторения создал и применил [сервис](svc.yml) и [ингрес](ingress.yml) для доступа к документу с локального хоста.
+
+```
+alex@uxtu-note:~/Study/kuber6/kuber6$ curl localhost/nginx/demo.html
+<html>
+<head>configMap demo!</head>
+<body>
+U popa byla
+sobaka On ee lubil
+Ona syela kusok myasa
+On ee lubil
+</body>
+</html>
+alex@uxtu-note:~/Study/kuber6/kuber6$ curl localhost/nginx
+<html>
+<head>configMap demo!</head>
+<body>
+U popa byla
+sobaka On ee lubil
+Ona syela kusok myasa
+On ee lubil
+</body>
+</html>
+alex@uxtu-note:~/Study/kuber6/kuber6$ curl localhost/mtool
+<html>
+<head>configMap demo!</head>
+<body>
+U popa byla
+sobaka On ee lubil
+Ona syela kusok myasa
+On ee lubil
+</body>
+</html>
+```
