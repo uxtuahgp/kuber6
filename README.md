@@ -220,7 +220,7 @@ pupkin@uxtu-note:~$ kubectl get namespaces
 Error from server (Forbidden): namespaces is forbidden: User "pupkin" cannot list resource "namespaces" in API group "" at the cluster scope
 ```
 
-6. Создал и применил манифесты создания [role](task3/role.yml) и [rolebinding](task3/rolebindidng.yml)
+6. Создал и применил манифесты создания [role](task3/role.yml) и [rolebinding](task3/rolebinding.yml)
 
 ```
 alex@uxtu-note:~/Study/kuber6/kuber6/task3$ kubectl apply -f role.yml
