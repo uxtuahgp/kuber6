@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cm-app
+  labels:
+    app: cm-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cm-app
+  template:
+    metadata:
+      labels:
+        app: cm-app
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          volumeMounts:
+            - name: cm-vol
+              mountPath: /usr/share/nginx/html
+              readOnly: true
+          ports:
+            - containerPort: 80
+        - name: multitool
+          image: wbitt/network-multitool
+          volumeMounts:
+            - name: cm-vol
+              mountPath: /usr/share/nginx/html
+              readOnly: true
+          ports:
+            - containerPort: 8080
+          env:
+            - name: "HTTP_PORT"
+              value: "8080"
+      volumes:
+        - name: cm-vol
+          configMap:
+            name: my-cm
